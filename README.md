@@ -17,10 +17,6 @@ scripts/
 paths.example.json example path mapping; fill it locally before running
 ```
 
-The old internal labels `e1`, `e12`, and `e3` were experiment-stage names from
-the private project. They have been replaced by functional directory names so
-that the public package is understandable without access to the project history.
-
 ## Main pipeline
 
 ```text
@@ -51,9 +47,6 @@ dataset revisions, and experiment-specific manifests remain necessary for full
 reproduction. Obtain KSC2, Common Voice, FLEURS, and model weights from their
 original sources and follow their licenses.
 
-Copy `paths.example.json` to a local configuration and replace all placeholder
-paths. The example contains no private server credentials or result paths.
-
 ```bash
 python3 scripts/demo_metrics.py
 python3 scripts/repro_check.py
@@ -79,8 +72,4 @@ separate `LICENSE` file; until then, the code remains under the authors'
 copyright. Do not redistribute the datasets or model weights through this
 repository.
 
----
-
-## 中文说明
-
-仓库中的 `scripts/` 是按功能整理的实验脚本；`paths.example.json` 只是本地路径示例。`docs/`、`notes/`、`tools/`、`stages.json`、`source_manifest.json` 和 `release_files.json` 原来属于内部整理和发布校验，不是论文复现的必要输入，因此已从公开仓库移除。旧的 `e1/e12/e3` 是内部实验阶段编号，已改为功能目录名。
+中文说明：本仓库公开论文实验代码和统计脚本，不包含原始语音数据、模型权重、预测文件、datastore 或 FAISS 索引。完整 GPU 复现需要按照论文说明准备数据、模型、依赖、硬件和实验参数。
