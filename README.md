@@ -2,7 +2,7 @@
 
 Reproducibility scripts for **Retrieving Its Own Transcriptions: Self-Generated Memory for Low-Resource ASR**.
 
-本仓库只发布论文实验所需的代码和一个路径配置示例，不包含语音数据、模型权重、预测文件、datastore、FAISS 索引或服务器内部结果。
+本仓库只发布论文实验所需的代码和统计脚本，不包含语音数据、模型权重、预测文件、datastore、FAISS 索引或服务器内部结果。
 
 ## Repository layout
 
@@ -14,7 +14,6 @@ scripts/
   analysis/        frequency, digit, failure, and auxiliary analyses
   statistics/      paired bootstrap and CPU-side statistics
   demo_metrics.py  small CPU-only demonstration
-paths.example.json example path mapping; fill it locally before running
 ```
 
 ## Main pipeline
