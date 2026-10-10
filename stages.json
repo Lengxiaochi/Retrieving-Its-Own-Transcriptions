@@ -1,0 +1,52 @@
+{
+  "pseudo_kk": {
+    "script": "code/e12/decode_ksc2_pool.py",
+    "module": "01 冻结教师生成 KSC2 伪标签",
+    "io": "音频池清单 → 带质量字段的 CSV"
+  },
+  "pseudo_cv": {
+    "script": "code/e12/decode_cv_strict.py",
+    "module": "01 CV 池清单校验及伪标签",
+    "io": "CV train/pool → 完整 UID CSV + 运行元数据"
+  },
+  "filter": {
+    "script": "code/e12/filter_manifest.py",
+    "module": "02 质量过滤",
+    "io": "伪标签 CSV → 过滤后的 CSV"
+  },
+  "memory": {
+    "script": "code/e3/build_datastore.py",
+    "module": "03 检索记忆",
+    "io": "过滤 CSV + HF Whisper → keys/vals 分片"
+  },
+  "index": {
+    "script": "code/e3/build_index.py",
+    "module": "04 检索索引",
+    "io": "datastore → FAISS IVFPQ index"
+  },
+  "decode": {
+    "script": "code/e3/decode_knn.py",
+    "module": "05 kNN 插值与解码保护",
+    "io": "dev/test + 库/索引/显式参数 → 逐句 JSON"
+  },
+  "baseline": {
+    "script": "code/e12/std_baseline.py",
+    "module": "06 标准 beam 对照",
+    "io": "KSC2 dev/test → 标准解码结果"
+  },
+  "frequency": {
+    "script": "code/e3/eval_buckets.py",
+    "module": "07 词频分组",
+    "io": "固定全池词频 + 两臂完整预测 → 分桶统计"
+  },
+  "digits": {
+    "script": "code/e3/eval_digits.py",
+    "module": "07 数字写法敏感性",
+    "io": "完整预测 → 主/副口径 WER"
+  },
+  "cpu_audit": {
+    "script": "notes/cpu_analysis_20260925/analyze.py",
+    "module": "07 当前项目 CPU 分析复核",
+    "io": "既有结果目录 → 统计报告；项目专用脚本"
+  }
+}

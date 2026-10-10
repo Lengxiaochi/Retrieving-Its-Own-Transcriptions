@@ -1,0 +1,16 @@
+runtime/
+__pycache__/
+*.pyc
+paths.server.json
+paths.local.json
+provenance.json
+audit/
+results/
+model/
+data/
+*.pt
+*.ckpt
+*.safetensors
+*.index
+*.mmap
+*.log
